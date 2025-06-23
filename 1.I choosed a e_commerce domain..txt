@@ -1,0 +1,92 @@
+1.I choosed a e_commerce domain.
+
+2. Entities and Relationships:
+1. Customers
+customer_id (PK)
+
+name
+
+email
+
+address
+↘ One-to-many → Orders
+
+2. Categories
+category_id (PK)
+
+category_name
+↘ One-to-many → Products
+
+3. Products
+product_id (PK)
+
+name
+
+price
+
+category_id (FK → Categories)
+↘ One-to-many → Order_Items
+
+4. Orders
+order_id (PK)
+
+customer_id (FK → Customers)
+
+order_date
+
+total_amount
+↘ One-to-many → Order_Items
+↘ One-to-many → Payments
+
+5. Order_Items
+order_item_id (PK)
+
+order_id (FK → Orders)
+
+product_id (FK → Products)
+
+quantity
+
+price
+
+6. Payments
+payment_id (PK)
+
+order_id (FK → Orders)
+
+payment_date
+
+amount
+
+payment_method
+
+3.tables are Customers,products,orders,order_items,payments created using CREATE TABLE Query.
+
+4.ER DIAGRAM
+[Customers] 
+  └──< customer_id (PK)
+        |
+        |---< [Orders] 
+        |        └──< order_id (PK)
+        |             └──< [Order_Items] 
+        |             |       ├──< product_id (FK) → [Products]
+        |             |       └──< order_id (FK)
+        |             |
+        |             └──< [Payments]
+        |
+[Products]
+  └──< product_id (PK)
+        |
+        └──< category_id (FK) → [Categories]
+
+[Categories]
+  └──< category_id (PK)
+
+5.Ralationship between foreign key and primary key
+
+1.Each customer has a unique customer_id.
+2.Each product category has a unique category_id.
+3.Each product is linked to a category.
+4.Each order belongs to a customer.
+5.Line items are linked to both orders and products.
+6.Each payment is linked to a specific order.
